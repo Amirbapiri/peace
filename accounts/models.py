@@ -77,8 +77,20 @@ class CoachManager(models.Manager):
         return super().get_queryset(*args, **kwargs).filter(type=Account.Types.COACH)
 
 
+class CoachExtra(models.Model):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    workout_price = models.DecimalField(
+        max_digits=15, decimal_places=3, default=0.000)
+    meal_price = models.DecimalField(
+        max_digits=15, decimal_places=3, default=0.000)
+
+
 class Coach(Account):
     objects = CoachManager()
+
+    @property
+    def extra(self):
+        return self.coachextra
 
     class Meta:
         proxy = True
