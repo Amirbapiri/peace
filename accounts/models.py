@@ -36,6 +36,14 @@ class MyAccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
+
+    class Types(models.TextChoices):
+        COACH = "COACH", "Coach"
+        CLIENT = "CLIENT", "Client"
+
+    type = models.CharField(verbose_name="Type", max_length=10,
+                            choices=Types.choices, default=Types.CLIENT)
+
     email = models.EmailField(verbose_name="email",
                               max_length=100, unique=True)
     username = models.CharField(max_length=30, unique=True)
@@ -62,3 +70,37 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+class CoachManager(models.Manager):
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).filter(type=Account.Types.COACH)
+
+
+class Coach(Account):
+    objects = CoachManager()
+
+    class Meta:
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.type = Account.Types.COACH
+        return super().save(*args, **kwargs)
+
+
+class ClientManager(models.Manager):
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).filter(type=Account.Types.CLIENT)
+
+
+class Client(Account):
+    objects = ClientManager()
+
+    class Meta:
+        proxy = True
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.type = Account.Types.CLIENT
+        return super().save(*args, **kwargs)

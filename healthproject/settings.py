@@ -45,6 +45,9 @@ INSTALLED_APPS = [
 
     # Apps
     "accounts",
+
+    # third parties
+    "django_extensions"
 ]
 
 MIDDLEWARE = [
