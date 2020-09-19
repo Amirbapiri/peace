@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+from profiles.models import Profile
+
 
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, first_name, last_name, password=None):
@@ -56,6 +58,9 @@ class Account(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+
+    profile = models.OneToOneField(
+        Profile, on_delete=models.CASCADE, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username", "first_name", "last_name"]

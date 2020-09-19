@@ -40,8 +40,9 @@
         <div class="form__container">
           <div class="logo"><img class="logo__pic" src="{% static 'accounts/img/logo.svg' %}" width="45"></div>
           <div class="fieldset">
-            <div class="field"><input class="input" type="email" placeholder="ایمیل" required></div>
-            <div class="field"><input class="input" type="password" placeholder="پسورد" required></div>
+            {% comment %} <div class="field"><input class="input" type="email" placeholder="ایمیل" required></div>
+            <div class="field"><input class="input" type="password" placeholder="پسورد" required></div> {% endcomment %}
+            {{ form }}
           </div><button class="btn">ورود به سیستم</button>
           <div class="text">پسوردتون رو فراموش کردین؟ <a href="#">برش گردون</a></div>
         </div>

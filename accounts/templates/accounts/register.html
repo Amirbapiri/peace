@@ -24,31 +24,35 @@
     <meta property="og:description" content="Description Here">
     <meta property="og:site_name" content="Site Name, i.e. Moz">
     <meta property="fb:admins" content="Facebook numeric ID">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'accounts/img/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'accounts/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'accounts/img/favicon-16x16.png' %}">
     <link rel="manifest" href="img/site.webmanifest">
     <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" media="all" href="css/app.css">
+    <link rel="stylesheet" media="all" href="{% static 'accounts/css/app.css' %}">
   </head>
   <body>
     <div class="page">
-      <form class="form" action>
+      <form class="form" action="{% url 'accounts:register' %}" method="POST">
+      {% csrf_token %}
         <div class="form__container">
-          <div class="logo"><img class="logo__pic" src="img/logo.svg" width="45"></div>
+          <div class="logo"><img class="logo__pic" src="{% static 'accounts/img/logo.svg' %}" width="45"></div>
           <div class="fieldset">
-            <div class="field"><input class="input" type="text" placeholder="Your name" required></div>
-            <div class="field"><input class="input" type="email" placeholder="E-mail address" required></div>
-            <div class="field"><input class="input" type="password" placeholder="Password" required></div>
+            {% comment %} <div class="field"><input class="input" type="text" placeholder="نام" name="first_name" required></div>
+            <div class="field"><input class="input" type="text" placeholder="نام خانوادگی" name="last_name" required></div>
+            <div class="field"><input class="input" type="email" placeholder="ایمیل" name="email" required></div>
+            <div class="field"><input class="input" type="password" placeholder="پسورد" name="password" required></div>
+            <div class="field"><input class="input" type="password" placeholder="تکرار کلمه عبور" name="repassword" required></div> {% endcomment %}
+            {{form}}
           </div><button class="btn">Sign up</button>
-          <div class="text">By creating an account, you agree and accept our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</div>
+          <div class="text">با ساختن حساب کاربری شما با <a href="#">قوانین</a> و <a href="#">سیاست کاری</a> ما موافق هستید</div>
         </div>
-        <div class="form__footer">Already have an account? <a href="signin.html">Log in</a>.</div>
+        <div class="form__footer">از قبل حساب کاربری در فیتنو دارید؟ <a href="{% url 'accounts:login' %}">وارد شوید</a></div>
       </form>
-      <div class="about">Website template by ⚡ <a href="https://niceverynice.com">Nice, Very Nice</a></div>
+      {% comment %} <div class="about">Website template by ⚡ <a href="https://niceverynice.com">Nice, Very Nice</a></div> {% endcomment %}
     </div>
   </body>
 </html>
