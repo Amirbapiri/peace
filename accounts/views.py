@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login as auth_login, authenticate
 
 from .forms import LoginForm, RegistrationForm
 
@@ -12,9 +12,9 @@ def login(request):
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
             user = authenticate(request, username=email, password=password)
-            if user is not None:
-                login(request)
-                return redirect("accounts:login")
+            if user:
+                auth_login(request, user)
+                return redirect("accounts:dashboard")
             else:
                 print("Invalid credentials")
                 return redirect("accounts:register")
@@ -31,10 +31,10 @@ def register(request):
     if request.POST:
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            # first_name = form.cleaned_data.get("first_name")
-            # last_name = form.cleaned_data.get("last_name")
-            # email = form.cleaned_data.get("email")
-            # username = form.cleaned_data.get("username")
+            user = form.save(commit=False)
+            email = form.cleaned_data["email"]
+            password = form.cleaned_data["password"]
+            user.set_password(password)
             form.save()
             return redirect("accounts:login")
         else:
@@ -43,3 +43,7 @@ def register(request):
         form = RegistrationForm()
         context["form"] = form
     return render(request, "accounts/register.html", context)
+
+
+def dashboard(request):
+    return render(request, "accounts/dashboard.html", {})
