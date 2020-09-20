@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Portal</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="Page description">
+    <!--Twitter Card data-->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@publisher_handle">
+    <meta name="twitter:title" content="Page Title">
+    <meta name="twitter:description" content="Page description less than 200 characters">
+    <meta name="twitter:creator" content="@author_handle">
+    <meta name="twitter:image" content="http://www.example.com/image.jpg">
+    <!--Open Graph data-->
+    <meta property="og:title" content="Title Here">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.example.com/">
+    <meta property="og:image" content="http://example.com/image.jpg">
+    <meta property="og:description" content="Description Here">
+    <meta property="og:site_name" content="Site Name, i.e. Moz">
+    <meta property="fb:admins" content="Facebook numeric ID">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'accounts/img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'accounts/img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'accounts/img/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'accounts/img/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'accounts/img/safari-pinned-tab.svg'%}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="{% static 'accounts/dashboard/css/styles.css' %}">
+  </head>
+  <body>
+    {% block title_head %} پنل کاربری {% endblock title_head %}
+
+  {% block navbar %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand" href="#">FITNO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">برنامه‌های من</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">مشخصات</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">لیست مربیان<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <a href="" class="navbar-brand">خروج از سیستم</a>
+  </div>
+</nav>
+  {% endblock navbar %}
+    {% block content %}
+    <div class="page mt-5">
+        <div class="container">
+            <div class="row mx-n5">
+                <div class="col px-6">
+                    <div class="p-3 border bg-light text-dark">
+                        <div class="card">
+                            <img class="card-img-top" src="{% static 'accounts/dashboard/img/coach-default.jpg' %}" alt="مربی">
+                            <div class="card-body">
+                                <h5 class="card-title">یاسین لک</h5>
+                                <ul class="list-unstyled">
+                                    <li class="list-group-item p-1">مربی رسمی فدراسیون</li>
+                                    <li class="list-group-item p-1">قهرمان حرفه‌ای فیزیک ifbb</li>
+                                    <li class="list-group-item p-1">دیگر افتخارات</li>
+                                </ul>
+                                <ul class="list-inline mt-2">
+                                    <li class="list-inline-item">برنامه غذایی: <span class="badge">۱۳۰,۰۰۰</span></li>
+                                    <li class="list-inline-item">برنامه تمرینی: <span class="badge">۱۵۰,۰۰۰</span></li>
+                                </ul>
+                                <div class="mt-3">
+                                    <button type="button" class="btn btn-dark">درخواست برنامه</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col px-6">
+                    <div class="p-3 border bg-light text-dark">
+                        <div class="card">
+                            <img class="card-img-top" src="{% static 'accounts/dashboard/img/coach-default.jpg' %}" alt="مربی">
+                            <div class="card-body">
+                                <h5 class="card-title">یاسین لک</h5>
+                                <ul class="list-unstyled">
+                                    <li class="list-group-item p-1">مربی رسمی فدراسیون</li>
+                                    <li class="list-group-item p-1">قهرمان حرفه‌ای فیزیک ifbb</li>
+                                    <li class="list-group-item p-1">دیگر افتخارات</li>
+                                </ul>
+                                <ul class="list-inline mt-2">
+                                    <li class="list-inline-item">برنامه غذایی: <span class="badge">۱۳۰,۰۰۰</span></li>
+                                    <li class="list-inline-item">برنامه تمرینی: <span class="badge">۱۵۰,۰۰۰</span></li>
+                                </ul>
+                                <div class="mt-3">
+                                    <button type="button" class="btn btn-dark">درخواست برنامه</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col px-6">
+                    <div class="p-3 border bg-light text-dark">
+                        <div class="card">
+                            <img class="card-img-top" src="{% static 'accounts/dashboard/img/coach-default.jpg' %}" alt="مربی">
+                            <div class="card-body">
+                                <h5 class="card-title">یاسین لک</h5>
+                                <ul class="list-unstyled">
+                                    <li class="list-group-item p-1">مربی رسمی فدراسیون</li>
+                                    <li class="list-group-item p-1">قهرمان حرفه‌ای فیزیک ifbb</li>
+                                    <li class="list-group-item p-1">دیگر افتخارات</li>
+                                </ul>
+                                <ul class="list-inline mt-2">
+                                    <li class="list-inline-item">برنامه غذایی: <span class="badge">۱۳۰,۰۰۰</span></li>
+                                    <li class="list-inline-item">برنامه تمرینی: <span class="badge">۱۵۰,۰۰۰</span></li>
+                                </ul>
+                                <div class="mt-3">
+                                    <button type="button" class="btn btn-dark">درخواست برنامه</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+  </body>
+</html>
