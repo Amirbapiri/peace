@@ -51,7 +51,7 @@
         <a class="nav-link" href="#">برنامه‌های من</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">مشخصات</a>
+        <a class="nav-link" href="{% url 'accounts:user_profile' %}">مشخصات</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="#">لیست مربیان<span class="sr-only">(current)</span></a>
@@ -64,75 +64,31 @@
 </nav>
   {% endblock navbar %}
     {% block content %}
-    <div class="page mt-5">
+    <div class="page">
         <div class="container">
             <div class="row mx-n5">
-                <div class="col px-6">
-                    <div class="p-3 border bg-light text-dark">
-                        <div class="card">
-                            <img class="card-img-top" src="{% static 'accounts/dashboard/img/coach-default.jpg' %}" alt="مربی">
-                            <div class="card-body">
-                                <h5 class="card-title">یاسین لک</h5>
-                                <ul class="list-unstyled">
-                                    <li class="list-group-item p-1">مربی رسمی فدراسیون</li>
-                                    <li class="list-group-item p-1">قهرمان حرفه‌ای فیزیک ifbb</li>
-                                    <li class="list-group-item p-1">دیگر افتخارات</li>
-                                </ul>
-                                <ul class="list-inline mt-2">
-                                    <li class="list-inline-item">برنامه غذایی: <span class="badge">۱۳۰,۰۰۰</span></li>
-                                    <li class="list-inline-item">برنامه تمرینی: <span class="badge">۱۵۰,۰۰۰</span></li>
-                                </ul>
-                                <div class="mt-3">
-                                    <button type="button" class="btn btn-dark">درخواست برنامه</button>
-                                </div>
-                            </div>
-                        </div>
+                {% for coach in coaches %}
+                  <div class="col-md-4 px-6 mb-2">
+                      <div class="p-3 border bg-light text-dark">
+                          <div class="card">
+                              <img class="card-img-top" src="{% static 'accounts/dashboard/img/coach-default.jpg' %}" alt="مربی">
+                              <div class="card-body">
+                                  <h5 class="card-title">{{ coach.first_name }} {{ coach.last_name }}</h5>
+                                  <ul class="list-unstyled">
+                                      <li class="list-group-item p-1">{{ coach.profile.coachprofileextra.education }}</li>
+                                  </ul>
+                                  <ul class="list-inline mt-2">
+                                      <li class="list-inline-item">برنامه غذایی: <span class="badge">۱۳۰,۰۰۰</span></li>
+                                      <li class="list-inline-item">برنامه تمرینی: <span class="badge">۱۵۰,۰۰۰</span></li>
+                                  </ul>
+                                  <div class="mt-3">
+                                      <button type="button" class="btn btn-dark">درخواست برنامه</button>
+                                  </div>
+                              </div>
+                          </div>
                     </div>
-                </div>
-                <div class="col px-6">
-                    <div class="p-3 border bg-light text-dark">
-                        <div class="card">
-                            <img class="card-img-top" src="{% static 'accounts/dashboard/img/coach-default.jpg' %}" alt="مربی">
-                            <div class="card-body">
-                                <h5 class="card-title">یاسین لک</h5>
-                                <ul class="list-unstyled">
-                                    <li class="list-group-item p-1">مربی رسمی فدراسیون</li>
-                                    <li class="list-group-item p-1">قهرمان حرفه‌ای فیزیک ifbb</li>
-                                    <li class="list-group-item p-1">دیگر افتخارات</li>
-                                </ul>
-                                <ul class="list-inline mt-2">
-                                    <li class="list-inline-item">برنامه غذایی: <span class="badge">۱۳۰,۰۰۰</span></li>
-                                    <li class="list-inline-item">برنامه تمرینی: <span class="badge">۱۵۰,۰۰۰</span></li>
-                                </ul>
-                                <div class="mt-3">
-                                    <button type="button" class="btn btn-dark">درخواست برنامه</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col px-6">
-                    <div class="p-3 border bg-light text-dark">
-                        <div class="card">
-                            <img class="card-img-top" src="{% static 'accounts/dashboard/img/coach-default.jpg' %}" alt="مربی">
-                            <div class="card-body">
-                                <h5 class="card-title">یاسین لک</h5>
-                                <ul class="list-unstyled">
-                                    <li class="list-group-item p-1">مربی رسمی فدراسیون</li>
-                                    <li class="list-group-item p-1">قهرمان حرفه‌ای فیزیک ifbb</li>
-                                    <li class="list-group-item p-1">دیگر افتخارات</li>
-                                </ul>
-                                <ul class="list-inline mt-2">
-                                    <li class="list-inline-item">برنامه غذایی: <span class="badge">۱۳۰,۰۰۰</span></li>
-                                    <li class="list-inline-item">برنامه تمرینی: <span class="badge">۱۵۰,۰۰۰</span></li>
-                                </ul>
-                                <div class="mt-3">
-                                    <button type="button" class="btn btn-dark">درخواست برنامه</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  </div>
+                {% endfor %}
             </div>
         </div>
     </div>

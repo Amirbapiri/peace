@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth import get_user_model
 
 from .forms import LoginForm, RegistrationForm
 
@@ -46,4 +47,17 @@ def register(request):
 
 
 def dashboard(request):
-    return render(request, "accounts/dashboard.html", {})
+    context = {}
+    if request.user.is_authenticated:
+        coaches = get_user_model().objects.coaches()
+        context["coaches"] = coaches
+    else:
+        return redirect("accounts:login")
+    return render(request, "accounts/dashboard.html", context)
+
+
+def user_profile(request):
+    if not request.user.is_authenticated:
+        return redirect("accounts:login")
+
+    return render(request, "accounts/user_profile.html", {})

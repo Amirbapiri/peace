@@ -36,6 +36,10 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def coaches(self):
+        coaches = Account.objects.filter(type=Account.Types.COACH)
+        return coaches
+
 
 class Account(AbstractBaseUser):
 
