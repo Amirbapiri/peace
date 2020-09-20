@@ -3,7 +3,9 @@ from django import forms
 from .models import Account
 
 
-class LoginForm(forms.ModelForm):
+class LoginForm(forms.Form):
+    email = forms.CharField(max_length=100)
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)

@@ -36,7 +36,8 @@
   </head>
   <body>
     <div class="page page_login">
-      <form class="form" action>
+      <form class="form" action={% url 'accounts:login' %} method="POST">
+      {% csrf_token %}
         <div class="form__container">
           <div class="logo"><img class="logo__pic" src="{% static 'accounts/img/logo.svg' %}" width="45"></div>
           <div class="fieldset">
