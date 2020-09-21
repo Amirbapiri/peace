@@ -59,5 +59,7 @@ def dashboard(request):
 def user_profile(request):
     if not request.user.is_authenticated:
         return redirect("accounts:login")
-
-    return render(request, "accounts/user_profile.html", {})
+    context = {}
+    if request.user.profile and request.user.type == "CLIENT":
+        context["profile"] = request.user.profile
+    return render(request, "accounts/user_profile.html", context)

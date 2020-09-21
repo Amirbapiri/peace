@@ -65,17 +65,3 @@ class ClientProfile(Profile):
         if not self.pk:
             self.type = Profile.Types.CLIENT
         return super().save(*args, **kwargs)
-
-
-# Signals to save profile for coach and client depending on instance type
-@receiver(post_save, sender=get_user_model())
-def save_profile(sender, instance, **kwargs):
-    if instance.type == Profile.Types.CLIENT:
-        profile = Profile.objects.create(
-            location="", job="", type=Profile.Types.CLIENT)
-        instance.profile = profile
-    elif instance.type == Profile.Types.COACH:
-        profile = Profile.objects.create(
-            location="", job="", type=Profile.Types.COACH)
-        instance.profile = profile
-        CoachProfileExtra.objects.create(profile=profile, education="")

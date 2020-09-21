@@ -70,7 +70,7 @@ class Account(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     profile = models.OneToOneField(
-        Profile, on_delete=models.CASCADE, null=True)
+        Profile, on_delete=models.CASCADE, null=True, blank=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username", "first_name", "last_name"]

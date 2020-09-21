@@ -23,7 +23,7 @@
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
           <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">سلام امیر</h1>
+            <h1 class="display-2 text-white">سلام {{ request.user.first_name }}</h1>
             <p class="text-white mt-0 mb-5">ابینجا پروفایل شماست. اینجا می‌تونین برخی از اطلاعات خودتون رو تغییر بدین. اطلاعات را به درستی وارد کنید زیرا که مربی عزیز شما به برخی از انها دسترسی خواهد داشت.</p>
             <a href="#!" class="btn btn-info">اعمال تغییرات</a>
           </div>
@@ -67,10 +67,10 @@
               </div>
               <div class="text-center">
                 <h3>
-                  امیر احمدی<span class="font-weight-light">, ۲۰</span>
+                  {{ request.user.first_name }} {{ request.user.last_name }}<span class="font-weight-light">, ۲۰</span>
                 </h3>
                 <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>ایران - تهران
+                  <i class="ni location_pin mr-2"></i>{{ profile.location }}
                 </div>
                 <div class="h5 mt-4">
                   <i class="ni business_briefcase-24 mr-2"></i>برنامه‌نویس - علاقه‌مند به فیزیولوژی
@@ -101,13 +101,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">نام کاربری</label>
-                        <input type="text" id="input-username" class="form-control form-control-alternative" disabled placeholder="Username" value="lucky.jesse">
+                        <input type="text" id="input-username" class="form-control form-control-alternative" disabled placeholder="Username" value="{{ request.user.username }}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">ایمیل</label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative" disabled placeholder="jesse@example.com">
+                        <input type="email" id="input-email" class="form-control form-control-alternative" disabled placeholder="{{ request.user.email }}">
                       </div>
                     </div>
                   </div>
@@ -115,13 +115,19 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-first-name">نام</label>
-                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Lucky">
+                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{ request.user.first_name }}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-last-name">نام خانوادگی</label>
-                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse">
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{ request.user.last_name }}">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-last-name">محل زندگی</label>
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{ profile.location }}">
                       </div>
                     </div>
                   </div>

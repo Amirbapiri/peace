@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
     # Apps
     "profiles",
-    "accounts",
+    "accounts.apps.AccountsConfig",
 
     # third parties
     "django_extensions"
