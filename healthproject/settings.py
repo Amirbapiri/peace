@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps
-    "accounts",
     "profiles",
+    "accounts",
 
     # third parties
     "django_extensions"

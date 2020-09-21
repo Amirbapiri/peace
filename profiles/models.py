@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.conf import settings
+from django.contrib.auth import get_user_model
 
 
 class Profile(models.Model):
@@ -68,7 +68,7 @@ class ClientProfile(Profile):
 
 
 # Signals to save profile for coach and client depending on instance type
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+@receiver(post_save, sender=get_user_model())
 def save_profile(sender, instance, **kwargs):
     if instance.type == Profile.Types.CLIENT:
         profile = Profile.objects.create(
