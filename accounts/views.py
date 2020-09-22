@@ -2,10 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from .forms import LoginForm, RegistrationForm, UpdateClientInformation
+from .decorators import authorized_user
 
 
+@authorized_user
 def login(request):
     context = {}
     if request.POST:
@@ -18,7 +21,6 @@ def login(request):
                 auth_login(request, user)
                 return redirect("accounts:dashboard")
             else:
-                print("Invalid credentials")
                 return redirect("accounts:register")
         else:
             context["form"] = form
@@ -48,6 +50,7 @@ def register(request):
     return render(request, "accounts/register.html", context)
 
 
+@login_required(login_url="accounts:login")
 def dashboard(request):
     context = {}
     if request.user.is_authenticated:
@@ -58,10 +61,11 @@ def dashboard(request):
     return render(request, "accounts/dashboard.html", context)
 
 
+@login_required(login_url="accounts:login")
 def user_profile(request):
     if not request.user.is_authenticated:
         return redirect("accounts:login")
     context = {}
-    if request.user.profile and request.user.type == "CLIENT":
+    if request.user.profile.exits() and request.user.type == "CLIENT":
         context["profile"] = request.user.profile
     return render(request, "accounts/user_profile.html", context)

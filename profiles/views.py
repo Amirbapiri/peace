@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 
 from .models import Profile
 from .forms import UpdateUserProfile
 from accounts.forms import UpdateClientInformation
 
 
+@login_required(login_url="accounts:login")
 def update_client_information(request):
     user = request.user
     if user.is_authenticated and user.profile:
