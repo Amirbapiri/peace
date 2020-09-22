@@ -48,3 +48,9 @@ class RegistrationForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ["first_name", "last_name", "username", "email", "password"]
+
+
+class UpdateClientInformation(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ["first_name", "last_name"]

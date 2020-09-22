@@ -7,6 +7,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # accounts
     path("", include("accounts.urls", namespace="accounts")),
+    # profiles
+    path("profile/", include("profiles.urls", namespace="profiles"))
 ]
 
 if settings.DEBUG:
