@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 <!DOCTYPE html>
 <html>
@@ -78,8 +79,8 @@
                                       <li class="list-group-item p-1">{{ coach.profile.coachprofileextra.education }}</li>
                                   </ul>
                                   <ul class="list-inline mt-2">
-                                      <li class="list-inline-item">برنامه غذایی: <span class="badge">۱۳۰,۰۰۰</span></li>
-                                      <li class="list-inline-item">برنامه تمرینی: <span class="badge">۱۵۰,۰۰۰</span></li>
+                                      <li class="list-inline-item">برنامه غذایی: <span class="badge"> {{ coach.coachextra.meal_price|floatformat:3|intcomma }} </span></li>
+                                      <li class="list-inline-item">برنامه تمرینی: <span class="badge">{{ coach.coachextra.workout_price|floatformat:3|intcomma }}</span></li>
                                   </ul>
                                   <div class="mt-3">
                                       <button type="button" class="btn btn-dark">درخواست برنامه</button>

@@ -37,6 +37,7 @@ def register(request):
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
             user.set_password(password)
+            user.type = "CLIENT"
             form.save()
             return redirect("accounts:login")
         else:
