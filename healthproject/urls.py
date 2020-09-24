@@ -8,7 +8,9 @@ urlpatterns = [
     # accounts
     path("", include("accounts.urls", namespace="accounts")),
     # profiles
-    path("profile/", include("profiles.urls", namespace="profiles"))
+    path("profile/", include("profiles.urls", namespace="profiles")),
+    # plans
+    path("plans/", include("plans.urls", namespace="plans")),   
 ]
 
 if settings.DEBUG:

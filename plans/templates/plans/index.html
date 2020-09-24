@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="{% static 'plans/images/form-img.jpg' %}" alt="">
+                    <div class="signup-img-content">
+                        <h2>ثبت درخواست برنامه جدید</h2>
+                        <p>لطفا اطلاعات رو به دقت و صحیح پر کنید.</p>
+                    </div>
+                </div>
+                <div class="signup-form">
+                    <form method="POST" class="register-form" id="register-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <label for="first_name" class="required">گردن</label>
+                                    <input type="text" name="first_name" id="first_name" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="last_name" class="required">سینه</label>
+                                    <input type="text" name="last_name" id="last_name" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="company" class="required">بازو</label>
+                                    <input type="text" name="company" id="company" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="email" class="required">ساعد</label>
+                                    <input type="text" name="email" id="email" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="phone_number" class="required">مچ</label>
+                                    <input type="text" name="phone_number" id="phone_number" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="phone_number" class="required">کمر</label>
+                                    <input type="text" name="phone_number" id="phone_number" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="phone_number" class="required">باسن</label>
+                                    <input type="text" name="phone_number" id="phone_number" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="phone_number" class="required">ران</label>
+                                    <input type="text" name="phone_number" id="phone_number" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="phone_number" class="required">ساق</label>
+                                    <input type="text" name="phone_number" id="phone_number" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-select">
+                                    <div class="label-flex">
+                                        <label for="gender">جنسیت</label>
+                                    </div>
+                                   <div class="form-radio-group">            
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="gender" id="male" checked>
+                                            <label for="cash">مرد</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="gender" id="female">
+                                            <label for="cash">زن</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="gender" id="other">
+                                            <label for="cheque">دیگر</label>
+                                            <span class="check"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-select">
+                                    <div class="label-flex">
+                                        <label for="meal_preference">طبع غذایی</label>
+                                        <a href="#" class="form-link">جزئیات غذایی</a>
+                                    </div>
+                                    <div class="select-list">
+                                        <select name="meal_preference" id="meal_preference">
+                                            <option value="Vegetarian">مشکلی با خوردن گوشت ندارم</option>
+                                            <option value="Kosher">گیاه‌خوارم</option>
+                                            {% comment %} <option value="Asian Vegetarian">Asian Vegetarian</option> {% endcomment %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-input">
+                                    <label for="front_image">عکس از جلو</label>
+                                    <input type="file" name="front_image" id="front_image" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="back_image">عکس از پشت</label>
+                                    <input type="file" name="back_image" id="back_image" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="side_image">عکس از کنار</label>
+                                    <input type="file" name="side_image" id="side_image" />
+                                </div>
+                                <div class="form-radio mt-5">
+                                    <div class="label-flex">
+                                        <label for="payment">پرداخت</label>
+                                        <a href="#" class="form-link">جزئیات پرداخت</a>
+                                    </div>
+                                    <div class="form-radio-group">            
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="payment" id="cash" checked>
+                                            <label for="cash">پرداخت انلاین</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="payment" id="cheque">
+                                            <label for="cheque">واریز به کارت</label>
+                                            <span class="check"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-submit">
+                            <input type="submit" value="ثبت درخواست" class="submit" id="submit" name="submit" />
+                            <input type="submit" value="ریست کردن" class="submit" id="reset" name="reset" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}
