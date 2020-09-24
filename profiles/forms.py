@@ -6,4 +6,4 @@ from .models import Profile
 class UpdateUserProfile(ModelForm):
     class Meta:
         model = Profile
-        fields = ["location", "job"]
+        fields = ["location", "job", "image"]

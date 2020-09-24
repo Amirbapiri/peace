@@ -66,6 +66,6 @@ def user_profile(request):
     if not request.user.is_authenticated:
         return redirect("accounts:login")
     context = {}
-    if request.user.profile.exits() and request.user.type == "CLIENT":
+    if request.user.profile and request.user.type == "CLIENT":
         context["profile"] = request.user.profile
     return render(request, "accounts/user_profile.html", context)

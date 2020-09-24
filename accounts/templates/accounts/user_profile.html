@@ -31,6 +31,7 @@
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--7">
+    <form action="{% url 'profiles:update_client_information' %}" method="POST" enctype="multipart/form-data">
       <div class="row">
         <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
           <div class="card card-profile shadow">
@@ -38,10 +39,12 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" class="rounded-circle">
+                    <img src="{{ request.user.profile.image.url }}" class="rounded-circle">
                   </a>
                 </div>
               </div>
+              
+              <input type="file" name="image"/>
             </div>
             <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
               <div class="d-flex justify-content-between">
@@ -93,7 +96,6 @@
               </div>
             </div>
             <div class="card-body">
-              <form action="{% url 'profiles:update_client_information' %}" method="POST">
               {% csrf_token %}
                 <h6 class="heading-small text-muted mb-4">اطلاعات کاربری</h6>
                 <div class="pl-lg-4">
@@ -150,12 +152,14 @@
                 <div>
                   <button type="submit" class="btn btn-info">اعمال تغییرات</button>
                 </div>
-              </form>
             </div>
           </div>
         </div>
+
+        
       </div>
     </div>
+    </form>
   </div>
   <footer class="footer">
     <div class="row align-items-center justify-content-xl-between">

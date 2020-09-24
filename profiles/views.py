@@ -15,10 +15,12 @@ def update_client_information(request):
         client_instance = get_object_or_404(
             get_user_model(), pk=request.user.pk)
         profile_instance = get_object_or_404(Profile, account=user)
+
         client_form = UpdateClientInformation(
             request.POST or None, instance=client_instance)
         profile_form = UpdateUserProfile(
-            request.POST or None, instance=profile_instance)
+            request.POST or None, request.FILES or None, instance=profile_instance)
+
         if client_form.is_valid() and profile_form.is_valid():
             profile_form.save()
             client_form.save()
