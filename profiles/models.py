@@ -21,6 +21,14 @@ def upload_path(instance, filename):
     return file_path
 
 
+def coach_image_path(instance, filename):
+    random_str = get_random_string()
+    file_path = "coaches/{coach_id}/{username}-{random_str}-{filename}".format(
+        coach_id=instance.profile.account.id, username=instance.profile.account.username, random_str=random_str, filename=filename
+    )
+    return file_path
+
+
 class Profile(models.Model):
 
     class Types(models.TextChoices):
@@ -48,6 +56,13 @@ class CoachProfileManager(models.Manager):
 class CoachProfileExtra(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
     education = models.CharField(max_length=20)
+    image = models.ImageField(
+        upload_to=coach_image_path, blank=True, null=True)
+    panel_image = models.ImageField(
+        upload_to=coach_image_path, blank=True, null=True)
+
+    def __str__(self):
+        return self.profile.account.email
 
 
 class CoachProfile(Profile):
