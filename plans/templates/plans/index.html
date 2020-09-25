@@ -47,10 +47,10 @@
                                         <a href="#" class="form-link">جزئیات غذایی</a>
                                     </div>
                                     <div class="select-list">
-                                        <select name="meal_preference" id="meal_preference">
-                                            <option value="Vegetarian">مشکلی با خوردن گوشت ندارم</option>
-                                            <option value="Kosher">گیاه‌خوارم</option>
-                                            {% comment %} <option value="Asian Vegetarian">Asian Vegetarian</option> {% endcomment %}
+                                        <select name="meal_preference" {% comment %} id="meal_preference"{% endcomment %}>
+                                            {% for k, v in plans_form.fields.food_nature.choices %}
+                                                <option value="{{ k }}" {% if plans_form.fields.food_nature.value == x %}selected{% endif %}>{{ v }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
