@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 from accounts.models import Coach, Client
 from sizes.models import Size
+from client_images.models import ClientImage
 
 FOOD_NATURE_CHOICES = (
     ("VEGETARIAN", "گیاه‌خوار"),
@@ -16,6 +17,8 @@ class Plan(models.Model):
     coach = models.OneToOneField(
         Coach, on_delete=models.DO_NOTHING, related_name="coach")
     size = models.OneToOneField(Size, on_delete=models.DO_NOTHING, null=True)
+    image = models.OneToOneField(
+        ClientImage, on_delete=models.DO_NOTHING, null=True)
     food_nature = models.CharField(
         max_length=13, choices=FOOD_NATURE_CHOICES, default="NONVEGETARIAN")
     created_at = models.DateTimeField(auto_now_add=True)
