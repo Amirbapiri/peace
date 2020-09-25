@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "plans",
     "sizes",
+    "client_images",
 
     # third parties
     "django_extensions"
