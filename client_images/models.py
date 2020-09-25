@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+
+class ClientImage(models.Model):
+    front = models.ImageField(upload_to="")
+    side = models.ImageField(upload_to="")
+    back = models.ImageField(upload_to="")
