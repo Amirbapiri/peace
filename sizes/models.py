@@ -10,6 +10,7 @@ class Size(models.Model):
     )
     height = models.CharField(max_length=30, blank=False, null=False)
     weight = models.CharField(max_length=30, blank=False, null=False)
+    chest = models.CharField(max_length=30, blank=False, null=False)
     neck = models.CharField(max_length=30, blank=False, null=False)
     arm = models.CharField(max_length=30, blank=False, null=False)
     wrist = models.CharField(max_length=30, blank=False, null=False)
