@@ -15,6 +15,6 @@ def create_plan(request, coach_id):
     context = {
         "sizes_form": sizes_form,
         "plans_form": plans_form,
-        "client_image_form": client_image_form
+        "image_form": image_form
     }
     return render(request, "plans/index.html", context)
