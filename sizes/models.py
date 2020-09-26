@@ -4,10 +4,7 @@ from accounts.models import Client
 
 
 class Size(models.Model):
-    client = models.OneToOneField(
-        Client,
-        on_delete=models.CASCADE
-    )
+    client = models.ForeignKey(Client, on_delete=models.DO_NOTHING)
     height = models.CharField(max_length=30, blank=False, null=False)
     weight = models.CharField(max_length=30, blank=False, null=False)
     chest = models.CharField(max_length=30, blank=False, null=False)
@@ -19,4 +16,4 @@ class Size(models.Model):
     calf = models.CharField(max_length=30, blank=False, null=False)
 
     def __str__(self):
-        return self.client.email + self.client.username
+        return self.client.email
