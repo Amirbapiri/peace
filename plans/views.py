@@ -9,12 +9,34 @@ from client_images.forms import ClientImageForm
 
 @login_required(login_url="accounts:login")
 def create_plan(request, coach_id):
-    sizes_form = SizesForm()
-    plans_form = PlanNatureFoodForm()
-    client_image_form = ClientImageForm()
+    size_form = SizesForm(request.POST or None)
+    plan_form = PlanNatureFoodForm(request.POST or None)
+    image_form = ClientImageForm(request.POST or None, request.FILES or None)
+    coach = get_object_or_404(Coach, pk=coach_id)
+    if request.POST:
+        if size_form.is_valid() and plan_form.is_valid() and image_form.is_valid():
+            size = size_form.save(commit=False)
+            size.client = request.user
+            size.save()
+
+            plan = plan_form.save(commit=False)
+            image = image_form.save(commit=False)
+            image.plan = plan
+
+            plan.client = request.user
+            plan.coach = coach
+            plan.size = size
+            plan.image = image
+
+            image.save()
+            plan.save()
+
+        else:
+            print("ERRORS IN FORMS")
     context = {
-        "sizes_form": sizes_form,
-        "plans_form": plans_form,
-        "image_form": image_form
+        "size_form": size_form,
+        "plan_form": plan_form,
+        "image_form": image_form,
+        "coach": coach
     }
     return render(request, "plans/index.html", context)

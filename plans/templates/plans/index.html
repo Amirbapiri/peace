@@ -19,7 +19,7 @@
                     <form method="POST" class="register-form" id="register-form" enctype="multipart/form-data"> {% csrf_token %}
                         <div class="form-row">
                             <div class="form-group">
-                                {{ sizes_form }}
+                                {{ size_form }}
                             </div>
                             <div class="form-group">
                                 <div class="form-select">
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="select-list">
                                         <select name="food_nature" {% comment %} id="meal_preference"{% endcomment %}>
-                                            {% for k, v in plans_form.fields.food_nature.choices %}
+                                            {% for k, v in plan_form.fields.food_nature.choices %}
                                                 <option value="{{ k }}" {% if plans_form.fields.food_nature.value == x %}selected{% endif %}>{{ v }}</option>
                                             {% endfor %}
                                         </select>

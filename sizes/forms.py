@@ -10,6 +10,7 @@ class SizesForm(ModelForm):
             "height": "قد",
             "weight": "وزن",
             "neck": "گردن",
+            "chest": "سینه",
             "arm": "بازو",
             "wrist": "مچ",
             "waist": "کمر",
@@ -25,5 +26,5 @@ class SizesForm(ModelForm):
 
     class Meta:
         model = Size
-        fields = ["height", "weight", "neck", "arm", "wrist",
+        fields = ["height", "weight", "neck", "chest", "arm", "wrist",
                   "waist", "hamstring", "calf"]
