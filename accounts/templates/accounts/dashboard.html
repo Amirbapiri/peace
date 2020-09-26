@@ -83,7 +83,7 @@
                                       <li class="list-inline-item">برنامه تمرینی: <span class="badge">{{ coach.coachextra.workout_price|floatformat:3|intcomma }}</span></li>
                                   </ul>
                                   <div class="mt-3">
-                                      <button type="button" class="btn btn-dark">درخواست برنامه</button>
+                                      <a href="{% url 'plans:create_plan' coach_id=coach.pk %}" class="btn text-light btn-dark">درخواست برنامه</a>
                                   </div>
                               </div>
                           </div>

@@ -6,5 +6,5 @@ from .views import create_plan
 app_name = "plans"
 
 urlpatterns = [
-    path("", create_plan, name="create_plan"),
+    path("new/<int:coach_id>/", create_plan, name="create_plan"),
 ]

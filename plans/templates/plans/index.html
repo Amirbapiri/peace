@@ -13,7 +13,10 @@
                     </div>
                 </div>
                 <div class="signup-form">
-                    <form method="POST" class="register-form" id="register-form">
+                <div class="bg-warning mt-4 p-3">
+                    <p>{{request.user.first_name}} عزیز شما در حال ارسال درخواست برنامه برای مربی {{ coach.first_name }} {{ coach.last_name }} هستید.</p>
+                </div>
+                    <form method="POST" class="register-form" id="register-form" enctype="multipart/form-data"> {% csrf_token %}
                         <div class="form-row">
                             <div class="form-group">
                                 {{ sizes_form }}
@@ -43,11 +46,11 @@
                                 </div>
                                 <div class="form-select">
                                     <div class="label-flex">
-                                        <label for="meal_preference">طبع غذایی</label>
+                                        <label for="food_nature">طبع غذایی</label>
                                         <a href="#" class="form-link">جزئیات غذایی</a>
                                     </div>
                                     <div class="select-list">
-                                        <select name="meal_preference" {% comment %} id="meal_preference"{% endcomment %}>
+                                        <select name="food_nature" {% comment %} id="meal_preference"{% endcomment %}>
                                             {% for k, v in plans_form.fields.food_nature.choices %}
                                                 <option value="{{ k }}" {% if plans_form.fields.food_nature.value == x %}selected{% endif %}>{{ v }}</option>
                                             {% endfor %}
