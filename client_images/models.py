@@ -29,4 +29,4 @@ class ClientImage(models.Model):
         upload_to=plan_image_upload_path, verbose_name="back image")
 
     def __str__(self):
-        return self.plan.client.email
+        return str(self.pk)

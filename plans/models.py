@@ -12,12 +12,12 @@ FOOD_NATURE_CHOICES = (
 
 
 class Plan(models.Model):
-    client = models.OneToOneField(
+    client = models.ForeignKey(
         Client, on_delete=models.DO_NOTHING, related_name="client")
-    coach = models.OneToOneField(
+    coach = models.ForeignKey(
         Coach, on_delete=models.DO_NOTHING, related_name="coach")
-    size = models.OneToOneField(Size, on_delete=models.DO_NOTHING, null=True)
-    image = models.OneToOneField(
+    size = models.ForeignKey(Size, on_delete=models.DO_NOTHING, null=True)
+    image = models.ForeignKey(
         ClientImage, on_delete=models.DO_NOTHING, null=True)
     food_nature = models.CharField(
         max_length=13, choices=FOOD_NATURE_CHOICES, default="NONVEGETARIAN")
