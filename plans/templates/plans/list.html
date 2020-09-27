@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title_head %} لیست درخواست‌های من {% endblock title_head %}
+
+{% block content %}
+    <div class="container p-3">
+        {% if plans %}
+            {% for plan in plans %}
+                <div class="row mb-5">
+                    <div class="col-md-10 mx-auto">
+                        <div class="card bg-warning">
+                            <div class="card-header">
+                                <h4 class="card-title">درخواست برنامه</h5>
+                                <h2 class="card-title text-dark">مربی: {{ plan.coach.first_name }} {{ plan.coach.last_name }} </h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-body">
+                                    شما در تاریخ {{plan.created_at}} به مربی مذکور درخواست ارسال کردین. برای دیدن جزئیات درخواست روی دیدن جزئیات برنامه کلیک کنید.
+                                </p>
+                                <a href="#" class="btn btn-default">دیدن جزئیات برنامه</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="row">
+                <h2 class="text-dark bg-info">شما هیچ درخواست ثبت شده‌ای ندارید.</h2>
+                <a class="btm btn-danger" href="{% url 'accounts:dashboard' %}">برگشتن به داشبورد</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

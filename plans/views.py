@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.contrib.auth.decorators import login_required
 
+from .models import Plan
 from accounts.models import Coach
 from .forms import PlanNatureFoodForm
 from sizes.forms import SizesForm
@@ -40,3 +41,12 @@ def create_plan(request, coach_id):
         "coach": coach
     }
     return render(request, "plans/index.html", context)
+
+
+@login_required(login_url="accounts:login")
+def plan_list(request):
+    context = {}
+    plans = get_list_or_404(Plan, client=request.user)
+    if plans:
+        context["plans"] = plans
+    return render(request, "plans/list.html", context)
