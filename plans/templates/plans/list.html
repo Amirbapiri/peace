@@ -17,7 +17,7 @@
                                 <p class="card-body">
                                     شما در تاریخ {{plan.created_at}} به مربی مذکور درخواست ارسال کردین. برای دیدن جزئیات درخواست روی دیدن جزئیات برنامه کلیک کنید.
                                 </p>
-                                <a href="#" class="btn btn-default">دیدن جزئیات برنامه</a>
+                                <a href="{% url 'plans:detail' plan_id=plan.pk %}" class="btn btn-default">دیدن جزئیات برنامه</a>
                             </div>
                         </div>
                     </div>

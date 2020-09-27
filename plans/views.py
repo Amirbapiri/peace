@@ -50,3 +50,12 @@ def plan_list(request):
     if plans:
         context["plans"] = plans
     return render(request, "plans/list.html", context)
+
+
+@login_required(login_url="accounts:login")
+def plan_detail(request, plan_id):
+    context = {}
+    plan = get_object_or_404(Plan, client=request.user, pk=plan_id)
+    if plan:
+        context["plan"] = plan
+    return render(request, "plans/details.html", context)
