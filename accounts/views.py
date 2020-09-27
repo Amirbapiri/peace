@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -28,6 +28,12 @@ def login(request):
         form = LoginForm()
         context["form"] = form
     return render(request, "accounts/login.html", context)
+
+
+@login_required(login_url="accounts:login")
+def logout(request):
+    auth_logout(request)
+    return redirect("accounts:login")
 
 
 def register(request):
