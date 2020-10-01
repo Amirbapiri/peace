@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title_head %}پنل مربیان{% endblock title_head %}
+{% block navbar %}
+<nav class="navbar navbar-expand-lg bg-dark text-lg-right">
+  <a class="navbar-brand" href="#">فیتنو | FITNO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item d-inline-block">
+        <a class="nav-link" href="#">صفحه اصلی</a>
+      </li>
+      <li class="nav-item d-inline-block">
+        <a class="nav-link" href="#">درخواست‌های جدید</a>
+      </li>
+      <li class="nav-item d-inline-block">
+        <a class="nav-link" href="#">لیست کلاینت‌ها</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock navbar %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row my-5">
+            <h2 class="text-danger">خوش آمدی مربی: {{request.user.first_name}}</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="bg-warning p-2">
+                    <h4 class="text-center">برنامه‌های نوشته شده</h4>
+                    <h1 class="text-center">220</h1>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-warning p-2">
+                    <h4 class="text-center">تعداد کلاینت‌ها</h4>
+                    <h1 class="text-center">23</h1>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-warning p-2">
+                    <h4 class="text-center">روز‌های مربیگری</h4>
+                    <h1 class="text-center">220</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <ul class="listbox">
+                    <img src="{{request.user.profile.image.url}}"/>
+                </ul>
+            </div>
+            <div class="col-md-8">
+              <form>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputFirstname">نام</label>
+                      <input type="text" class="form-control" id="inputFirstname" value="{{ request.user.first_name }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputLastname">نام خانوادگی</label>
+                      <input type="text" class="form-control" id="inputLastname" value="{{ request.user.last_name }}">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4">ایمیل</label>
+                      <input type="email" class="form-control" disabled id="inputEmail4" placeholder="" value="{{ request.user.email }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputEdu">سطح تحصیلات</label>
+                      <input type="text" class="form-control" id="inputEdu" placeholder="سطح تحصیلات" value="{{ request.user.profile.edu }}">
+                    </div>
+                  </div>
+                  <h3 class="bg-success text-light p-1  mt-3 w-25 text-center rounded">قیمت‌ها</h3>
+                  <div class="p-3">
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputWorkoutprice">برنامه تمرینی</label>
+                        <input type="text" class="form-control" id="inputWorkoutprice" value={{ request.user.profile.coachprofileextra.workout_price }}>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputMealPrice">برنامه غذایی و مکمل</label>
+                        <input type="text" class="form-control" id="inputMealPrice" value={{ request.user.profile.coachprofileextra.meal_price }}>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">ثبت</button>
+              </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

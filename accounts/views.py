@@ -18,8 +18,12 @@ def login(request):
             password = form.cleaned_data.get("password")
             user = authenticate(request, username=email, password=password)
             if user:
-                auth_login(request, user)
-                return redirect("accounts:dashboard")
+                if user.type == "CLIENT":
+                    auth_login(request, user)
+                    return redirect("accounts:dashboard")
+                elif user.type == "COACH":
+                    auth_login(request, user)
+                    return redirect("coaches:dashboard")
             else:
                 return redirect("accounts:register")
         else:

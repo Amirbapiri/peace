@@ -10,7 +10,7 @@ def authorized_user(view):
                 return redirect("accounts:dashboard")
             elif request.user.type == "COACH":
                 # redirect to coache's dashboard
-                pass
+                return redirect("coaches:dashboard")
         else:
             return view(request, *args, **kwargs)
     return wrapper
