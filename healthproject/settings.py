@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "plans",
     "sizes",
     "client_images",
+    "coaches",
 
     # third parties
     "django_extensions"
