@@ -7,7 +7,10 @@ from accounts.models import CoachExtra
 from .models import Profile, CoachProfile
 from .forms import UpdateUserProfile
 from accounts.forms import UpdateClientInformation
-from coaches.forms import UpdateCoachInformation, UpdateCoachExtraInformation
+from coaches.forms import (UpdateCoachInformation,
+                           UpdateCoachExtraInformation,
+                           UpdateCoachProfile,
+                           UpdateCoachProfileExtra)
 
 
 @login_required(login_url="accounts:login")
@@ -41,14 +44,17 @@ def update_coach_information(request):
 
         coach_form = UpdateCoachInformation(
             request.POST or None, instance=coach_instance)
-        coach_extra_form = UpdateCoachExtraInformation(request.POST or None, instance=coach_instance.coachextra)
-        profile_form = UpdateUserProfile(
-            request.POST or None, request.FILES or None, instance=profile_instance.account.coachextra)
-
-        if coach_form.is_valid() and coach_extra_form.is_valid():
+        coach_extra_form = UpdateCoachExtraInformation(
+            request.POST or None, instance=coach_instance.coachextra)
+        profile_form = UpdateCoachProfile(
+            request.POST or None, instance=profile_instance)
+        coach_profile_extra_form = UpdateCoachProfileExtra(
+            request.POST or None, request.FILES or None, instance=profile_instance.coachprofileextra)
+        if coach_form.is_valid() and coach_extra_form.is_valid() and profile_form.is_valid() and coach_profile_extra_form.is_valid():
             coach_extra_form.save()
-            # profile_form.save()
+            profile_form.save()
             coach_form.save()
+            coach_profile_extra_form.save()
             return redirect("coaches:dashboard")
         # form is not valid so return flash message to notify user.
         return redirect("coaches:dashboard")

@@ -50,11 +50,11 @@
         <div class="row mt-5">
             <div class="col-md-4">
                 <ul class="listbox">
-                    <img src="{{request.user.profile.image.url}}"/>
+                    <img src="{{request.user.profile.coachprofileextra.image.url}}"/>
                 </ul>
             </div>
             <div class="col-md-8">
-              <form method="POST" action="{% url 'coaches:update_coach_information' %}">
+              <form method="POST" action="{% url 'coaches:update_coach_information' %}" enctype="multipart/form-data">
               {% csrf_token %}
                   <div class="form-row">
                     <div class="form-group col-md-6">
@@ -73,10 +73,30 @@
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputEdu">سطح تحصیلات</label>
-                      <input type="text" class="form-control" id="inputEdu" placeholder="سطح تحصیلات" value="{{ request.user.profile.edu }}">
+                      <input type="text" class="form-control" id="inputEdu" name="education" placeholder="سطح تحصیلات" value="{{ request.user.profile.coachprofileextra.education }}">
                     </div>
                   </div>
-                  <h3 class="bg-success text-light p-1  mt-3 w-25 text-center rounded">قیمت‌ها</h3>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputLocation">مکان</label>
+                      <input type="text" class="form-control" name="location" id="inputLocation" placeholder="" value="{{ request.user.profile.location }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputJob">شغل</label>
+                      <input type="text" class="form-control" name="job" id="inputJob" placeholder="سطح تحصیلات" value="{{ request.user.profile.job }}">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputImage">عکس پروفایل</label>
+                      <input type="file" class="form-control" name="image" id="inputImage" placeholder="" value="{{ request.user.profile.location }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPanelImage">عکس پنل</label>
+                      <input type="file" class="form-control" name="panel_image" id="inputPanelImage" placeholder="سطح تحصیلات" value="{{ request.user.profile.job }}">
+                    </div>
+                  </div>
+                  <h3 class="text-dark mt-3 d-inline-block">قیمت‌ها</h3>
                   <div class="p-3">
                     <div class="form-row">
                       <div class="form-group col-md-6">
