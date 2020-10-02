@@ -54,15 +54,16 @@
                 </ul>
             </div>
             <div class="col-md-8">
-              <form>
+              <form method="POST" action="{% url 'coaches:update_coach_information' %}">
+              {% csrf_token %}
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputFirstname">نام</label>
-                      <input type="text" class="form-control" id="inputFirstname" value="{{ request.user.first_name }}">
+                      <input type="text" class="form-control" name="first_name" id="inputFirstname" value="{{ request.user.first_name }}">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputLastname">نام خانوادگی</label>
-                      <input type="text" class="form-control" id="inputLastname" value="{{ request.user.last_name }}">
+                      <input type="text" class="form-control" name="last_name" id="inputLastname" value="{{ request.user.last_name }}">
                     </div>
                   </div>
                   <div class="form-row">
@@ -80,11 +81,11 @@
                     <div class="form-row">
                       <div class="form-group col-md-6">
                         <label for="inputWorkoutprice">برنامه تمرینی</label>
-                        <input type="text" class="form-control" id="inputWorkoutprice" value={{ request.user.coachextra.workout_price }}>
+                        <input type="text" class="form-control" name="workout_price" id="inputWorkoutprice" value={{ request.user.coachextra.workout_price }}>
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputMealPrice">برنامه غذایی و مکمل</label>
-                        <input type="text" class="form-control" id="inputMealPrice" value={{ request.user.coachextra.meal_price }}>
+                        <input type="text" class="form-control" name="meal_price" id="inputMealPrice" value={{ request.user.coachextra.meal_price }}>
                       </div>
                     </div>
                   </div>
