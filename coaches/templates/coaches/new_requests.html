@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item d-inline-block">
-        <a class="nav-link" href="#">صفحه اصلی</a>
+        <a class="nav-link" href="{% url 'coaches:dashboard' %}">صفحه اصلی</a>
       </li>
       <li class="nav-item d-inline-block">
         <a class="nav-link" href="#">درخواست‌های جدید</a>
@@ -30,7 +30,6 @@
                         <th scope="col">#</th>
                         <th scope="col">نام کامل</th>
                         <th scope="col">تاریخ ثبت درخواست</th>
-                        <th scope="col">جزئیات درخواست</th>
                         <th scope="col">عملیات</th>
                     </tr>
                 </thead>
@@ -40,8 +39,7 @@
                             <th scope="row">{{ forloop.counter }}</th>
                             <td>{{ request.client.first_name }} {{ request.client.last_name }}</td>
                             <td>{{ request.created_at }}</td>
-                            <td><a class="btn btn-info text-light">دیدن</a></td>
-                            <td><a class="btn btn-success text-light">انجام</a></td>
+                            <td><a href="{% url 'coaches:create_plan' request_id=request.pk %}" class="btn btn-info text-light">طراحی برنامه</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

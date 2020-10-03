@@ -22,3 +22,7 @@ def new_requests(request):
         "new_requests": new_requests
     }
     return render(request, "coaches/new_requests.html", context)
+
+
+def create_plan(request, request_id):
+    return render(request, "coaches/design_plan.html", {})
