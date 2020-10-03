@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title_head %}پنل مربیان{% endblock title_head %}
+{% block navbar %}
+<nav class="navbar navbar-expand-lg bg-dark text-lg-right">
+  <a class="navbar-brand" href="#">فیتنو | FITNO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item d-inline-block">
+        <a class="nav-link" href="#">صفحه اصلی</a>
+      </li>
+      <li class="nav-item d-inline-block">
+        <a class="nav-link" href="#">درخواست‌های جدید</a>
+      </li>
+      <li class="nav-item d-inline-block">
+        <a class="nav-link" href="#">لیست کلاینت‌ها</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock navbar %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">نام کامل</th>
+                        <th scope="col">تاریخ ثبت درخواست</th>
+                        <th scope="col">جزئیات درخواست</th>
+                        <th scope="col">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in new_requests %}
+                        <tr class="text-center">
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ request.client.first_name }} {{ request.client.last_name }}</td>
+                            <td>{{ request.created_at }}</td>
+                            <td><a class="btn btn-info text-light">دیدن</a></td>
+                            <td><a class="btn btn-success text-light">انجام</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
