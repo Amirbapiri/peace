@@ -22,6 +22,7 @@ class Plan(models.Model):
     food_nature = models.CharField(
         max_length=13, choices=FOOD_NATURE_CHOICES, default="NONVEGETARIAN")
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(verbose_name="Sent", default=False)
 
     def __str__(self):
         return self.client.email
