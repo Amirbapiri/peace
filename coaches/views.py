@@ -1,6 +1,6 @@
 import datetime
 
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from plans.models import Plan
@@ -25,4 +25,11 @@ def new_requests(request):
 
 
 def create_plan(request, request_id):
-    return render(request, "coaches/design_plan.html", {})
+    plan_obj = get_object_or_404(Plan, pk=request_id, coach=request.user)
+    context = {
+        "plan_size": plan_obj.size,
+        "plan_client": plan_obj.client,
+        "plan_images": plan_obj.image,
+        "plan_created_at": plan_obj.created_at
+    }
+    return render(request, "coaches/design_plan.html", context)

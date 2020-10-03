@@ -24,45 +24,70 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="row">
-        <table class="table-bordered">
+  <div class="row">
+      <div class="col-md-12">
+        <p class="text-dark p-1">مشخصات کلاینت</p>
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">نام کلاینت</th>
+                    <th scope="col">نام کامل</th>
+                    <th scope="col">شغل</th>
+                    <th scope="col">محل زندگی</th>
                     <th scope="col">تاریخ ثبت درخواست</th>
-                    <th scope="col">سایزها</th>
-                    <th scope="col">عملیات</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center">
-                    <th scope="row"></th>
-                    <td>s</td>
-                    <td>d</td>
-                    <td>
-                        <table class="table table-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td><a class="btn btn-success text-light">انجام</a></td>
-                </tr>
+              <tr class="text-center">
+                  <td>{{ plan_client.first_name }} {{ plan_client.last_name }}</td>
+                  <td>{{ plan_client.profile.job }}</td>
+                  <td>{{ plan_client.profile.location }}</td>
+                  <td>{{ plan_created_at }}</td>
+              </tr>
             </tbody>
-        </table>
+          </table>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <p class="text-dark p-1">سایزهای کلاینت</p>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">قد</th>
+            <th scope="col">وزن</th>
+            <th scope="col">گردن</th>
+            <th scope="col">سینه</th>
+            <th scope="col">بازو</th>
+            <th scope="col">مچ</th>
+            <th scope="col">کمر</th>
+            <th scope="col">همسترینگ</th>
+            <th scope="col">ساق</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{ plan_size.height }}</th>
+            <th scope="row">{{ plan_size.weight }}</th>
+            <th scope="row">{{ plan_size.neck }}</th>
+            <th scope="row">{{ plan_size.chest }}</th>
+            <th scope="row">{{ plan_size.arm }}</th>
+            <th scope="row">{{ plan_size.wrist }}</th>
+            <th scope="row">{{ plan_size.waist }}</th>
+            <th scope="row">{{ plan_size.hamstring }}</th>
+            <th scope="row">{{ plan_size.calf }}</th>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <div class="col-md-3">
+      <p class="text-dark p-1">عکس‌های کلاینت</p>
+      <p class="text-light mb-1 p-1 bg-info">از جلو: </p>
+      <img src="{{ plan_images.front.url }}"/>
+      <p class="text-light mb-1 p-1 bg-info">از کنار: </p>
+      <img src="{{ plan_images.side.url }}"/>
+      <p class="text-light mb-1 p-1 bg-info">از پشت: </p>
+      <img src="{{ plan_images.back.url }}"/>
+    </div>
+  </div>
 </div>
 {% endblock content %}
