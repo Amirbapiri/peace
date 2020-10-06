@@ -1,4 +1,4 @@
-#!/media/amir/Development/Dev/healthproject/healthvenv/bin/python3
+#!/home/amir/Desktop/healthproject/healthvenv/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
