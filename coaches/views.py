@@ -33,3 +33,6 @@ def create_plan(request, request_id):
         "plan_created_at": plan_obj.created_at
     }
     return render(request, "coaches/design_plan.html", context)
+
+def create_pdf(request):
+    print(request.POST)
