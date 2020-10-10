@@ -82,8 +82,7 @@
       <div class="row">
         <div class="col-md-9">
           <div class="plan-inputs">
-          {% comment %} {% url 'coaches:create_pdf' %} {% endcomment %}
-            <form class="form-group" >
+            <form class="form-group">{% csrf_token %}
               <div class="form-inputs"></div>
               <a class="btn btn-success btnCreatePlan">صدور برنامه</a>
             </form>

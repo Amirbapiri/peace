@@ -1,7 +1,9 @@
 import datetime
+import json
 
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 from plans.models import Plan
 
@@ -34,5 +36,10 @@ def create_plan(request, request_id):
     }
     return render(request, "coaches/design_plan.html", context)
 
+
+@csrf_exempt
 def create_pdf(request):
-    print(request.POST)
+    if request.POST:
+        data = json.loads(request.POST.get("workouts"))
+        for item in data:
+            print(item)
