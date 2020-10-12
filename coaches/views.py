@@ -1,9 +1,18 @@
-import datetime
 import json
+import tempfile
 
+from django.http import HttpResponse
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles import finders
+from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.template.loader import get_template, render_to_string
+from django.views.generic import View
+
+from xhtml2pdf import pisa
+
+from weasyprint import HTML
 
 from plans.models import Plan
 
@@ -39,7 +48,21 @@ def create_plan(request, request_id):
 
 @csrf_exempt
 def create_pdf(request):
-    if request.POST:
-        data = json.loads(request.POST.get("workouts"))
-        for item in data:
-            print(item)
+    # Data
+    data = json.loads(request.POST["workouts"])
+
+    html_string = render_to_string(
+        "coaches/workout_template.html", {"workouts": data})
+    html = HTML(string=html_string)
+    result = html.write_pdf("report.pdf")
+
+    # Create http reponse
+    response = HttpResponse(content_type="application/pdf;")
+    response["Content-Disposition"] = "attachment; filename=report.pdf"
+    response["Content-Transfer-Encoding"] = "binary"
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output = open(output.name, 'rb')
+        response.write(output.read())
+    return response

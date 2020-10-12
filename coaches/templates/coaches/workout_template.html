@@ -1,0 +1,42 @@
+<html>
+ <head>
+   <title>Test</title>
+   <style>
+     h1 {
+       text-align: center;
+     }
+
+     table {
+       border: 1px solid;
+       margin: 0 auto;
+       width: 70%;
+     }
+
+     td, th {
+       text-align: center;
+       border: 1px solid;
+     }
+   </style>
+ </head>
+ <body>
+   <h1>لیست حرکات</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>نام حرکت</th>
+         <th>تعداد ست</th>
+         <th>تکرار هر ست</th>
+       </tr>
+     </thead>
+     <tbody>
+       {% for w in workouts %}
+         <tr>
+           <td>{{ w.name }}</td>
+           <td>{{ w.setCount }}</td>
+           <td>{{ w.reps }}</td>
+         </tr>
+       {% endfor %}    
+     </tbody>
+   </table>
+ </body>
+</html>
