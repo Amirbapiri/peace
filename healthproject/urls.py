@@ -13,6 +13,8 @@ urlpatterns = [
     path("plans/", include("plans.urls", namespace="plans")),
     # coaches
     path("coaches/", include("coaches.urls", namespace="coaches")),
+    # workoutbank
+    path("workouts/", include("workoutbank.urls", namespace="workouts")),
 ]
 
 if settings.DEBUG:

@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def workout_list(request):
+    return render(request, "workoutbank/workoutlist.html", {})
