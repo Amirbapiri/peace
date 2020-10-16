@@ -18,9 +18,7 @@
             <div class="col-md-5 p-4 bg-primary">
                 {% for workout in workouts %}
                     <div class="">
-                        <a class="" href="{% url 'workoutbank:detail' workout_id=workout.pk %}">
-                            <span class="badge badge-light">{{forloop.counter}}</span> <p class="d-inline h3 text-light">{{ workout.title }}</p>
-                        </a>
+                        <span class="badge badge-light">{{forloop.counter}}</span> <p class="d-inline h3 text-light">{{ workout.title }}</p>
                         <span class="badge badge-light">{{ workout.category.title }}</span>
                     </div>
                 {% endfor %}
