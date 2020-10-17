@@ -25,8 +25,20 @@ def workout_image_upload_path(instance, filename):
     return file_path
 
 
+def workout_cat_image_path(instance, filename):
+    random_str = get_random_string()
+    file_path = "workouts/categories/{title}-{random_str}-{filename}".format(
+        title=instance.title,
+        random_str=random_str,
+        filename=filename
+    )
+    return file_path
+
+
 class WorkoutCategory(models.Model):
     title = models.CharField(max_length=255)
+    image = models.ImageField(
+        verbose_name="category image", upload_to=workout_cat_image_path, default="")
 
     class Meta:
         verbose_name = "Category"

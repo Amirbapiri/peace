@@ -25,7 +25,7 @@
                     <p class="h3 dark-text">آناتومی عضله {{ workout.category }}</p>
                 </div>
                 <div class="">
-                    <img src="{% static 'workoutbank/img/chestanatomy.png' %}"/>
+                    <img src="{{ workout.category.image.url }}"/>
                 </div>
             </div>
         </div>
