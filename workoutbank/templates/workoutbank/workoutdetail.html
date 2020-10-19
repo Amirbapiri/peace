@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <p class="h2">{{ workout.title }} از بخش حرکات <span class="badge badge-danger">{{ workout.category }}<span></p>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-header bg-info">
+                        <p class="card-title h3 text-dark">نحوه انجام حرکت <span class="badge badge-danger">{{ workout.title }}<span></p>
+                    </div>
+                    <img src="{{ workout.image.url }}"/>
+                    <div class="card-body bg-secondary">
+                        <p class="card-title h3 text-dark">
+                            {{ workout.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <p class="h3 dark-text">آناتومی عضله {{ workout.category }}</p>
+                </div>
+                <div class="">
+                    <img src="{{ workout.category.image.url }}"/>
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'workouts:list' %}" class="btn btn-danger">برگشت به بانک تمرینات</a>
+    </div>
+{% endblock content %}
+

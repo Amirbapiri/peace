@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "sizes",
     "client_images",
     "coaches",
+    "workoutbank",
 
     # third parties
     "django_extensions"

@@ -90,10 +90,9 @@
         </div>
         <div class="col-md-3">
           <ul class="list-group">
-            <li class="list-group-item d-inline-block">پرس سینه</li>
-            <li class="list-group-item d-inline-block">جلو بازو</li>
-            <li class="list-group-item d-inline-block">حلو پا ماشین</li>
-            <li class="list-group-item d-inline-block">پشت بازو</li>
+            {% for workout in workouts %}
+              <li class="list-group-item d-inline-block" value="{{ workout.pk }}">{{ workout.title }}</li>
+            {% endfor %}
           </ul>
         </div>
       </div>
