@@ -10,6 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import get_template, render_to_string
 from django.views.generic import View
 
+from workoutbank.models import WorkoutItem
+
 from xhtml2pdf import pisa
 
 from weasyprint import HTML
@@ -37,11 +39,13 @@ def new_requests(request):
 
 def create_plan(request, request_id):
     plan_obj = get_object_or_404(Plan, pk=request_id, coach=request.user)
+    workouts = get_list_or_404(WorkoutItem)
     context = {
         "plan_size": plan_obj.size,
         "plan_client": plan_obj.client,
         "plan_images": plan_obj.image,
-        "plan_created_at": plan_obj.created_at
+        "plan_created_at": plan_obj.created_at,
+        "workouts": workouts,
     }
     return render(request, "coaches/design_plan.html", context)
 
