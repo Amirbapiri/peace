@@ -17,9 +17,11 @@ from xhtml2pdf import pisa
 from weasyprint import HTML
 
 from plans.models import Plan
+from .decorators import coach_required
 
 
 @login_required(login_url="accounts:login")
+@coach_required
 def dashboard(request):
     plans_num = Plan.objects.filter(coach=request.user).count()
     context = {
@@ -28,6 +30,8 @@ def dashboard(request):
     return render(request, "coaches/dashboard.html", context)
 
 
+@login_required(login_url="accounts:login")
+@coach_required
 def new_requests(request):
     coach = request.user
     new_requests = get_list_or_404(Plan, coach=coach, status=False)
@@ -37,6 +41,8 @@ def new_requests(request):
     return render(request, "coaches/new_requests.html", context)
 
 
+@login_required(login_url="accounts:login")
+@coach_required
 def create_plan(request, request_id):
     plan_obj = get_object_or_404(Plan, pk=request_id, coach=request.user)
     workouts = get_list_or_404(WorkoutItem)
@@ -51,6 +57,7 @@ def create_plan(request, request_id):
 
 
 @csrf_exempt
+@coach_required
 def create_pdf(request):
     # Data
     data = json.loads(request.POST["workouts"])
