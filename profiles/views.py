@@ -12,8 +12,11 @@ from coaches.forms import (UpdateCoachInformation,
                            UpdateCoachProfile,
                            UpdateCoachProfileExtra)
 
+from accounts.decorators import authorized_user, client_required, coach_required
+
 
 @login_required(login_url="accounts:login")
+@client_required
 def update_client_information(request):
     user = request.user
     if user.is_authenticated and user.profile:
@@ -35,6 +38,8 @@ def update_client_information(request):
     return redirect("accounts:login")
 
 
+@login_required(login_url="accounts:login")
+@coach_required
 def update_coach_information(request):
     user = request.user
     if user.is_authenticated and user.profile:
