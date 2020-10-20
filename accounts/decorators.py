@@ -1,5 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponseNotAllowed
 from django.shortcuts import redirect
+
+from accounts.models import Account
 
 
 def authorized_user(view):
@@ -13,4 +15,23 @@ def authorized_user(view):
                 return redirect("coaches:dashboard")
         else:
             return view(request, *args, **kwargs)
+    return wrapper
+
+
+def client_required(view):
+    def wrapper(request, *args, **kwargs):
+        print("client_required")
+        if request.user.type == Account.Types.CLIENT:
+            return view(request, *args, **kwargs)
+        else:
+            return redirect("accounts:dashboard")
+    return wrapper
+
+
+def coach_required(view):
+    def wrapper(request, *args, **kwargs):
+        if request.user.type == Account.Types.COACH:
+            return view(request, *args, **kwargs)
+        else:
+            return redirect("accounts:dashboard")
     return wrapper

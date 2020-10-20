@@ -17,7 +17,7 @@ from xhtml2pdf import pisa
 from weasyprint import HTML
 
 from plans.models import Plan
-from .decorators import coach_required
+from accounts.decorators import coach_required
 
 
 @login_required(login_url="accounts:login")
