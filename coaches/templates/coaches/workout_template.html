@@ -1,3 +1,5 @@
+{% load static %}
+
 <html>
  <head>
    <title>Test</title>
@@ -19,21 +21,22 @@
    </style>
  </head>
  <body>
+  {% comment %} <div class="image-holder">
+    <img class="rounded" src="{% static 'workout_template/pdf-image.jpg' %}"/>
+  </div> {% endcomment %}
    <h1>لیست حرکات</h1>
    <table>
      <thead>
        <tr>
          <th>نام حرکت</th>
          <th>تعداد ست</th>
-         <th>تکرار هر ست</th>
        </tr>
      </thead>
      <tbody>
        {% for w in workouts %}
          <tr>
            <td>{{ w.name }}</td>
-           <td>{{ w.setCount }}</td>
-           <td>{{ w.reps }}</td>
+           <td>{{ w.set }}</td>
          </tr>
        {% endfor %}    
      </tbody>
